@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.6.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.roma</groupId>
+	<artifactId>candidato</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>roma</name>
+	<description>Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+	
+	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<!-- Thymeleaf -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+  				  <version>2.1.5.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+		
+		  <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
+	</dependencies>
+
+	<build>
+	<finalName>Candidato</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			
+	<plugin><groupId>io.fabric8</groupId><artifactId>docker-maven-plugin</artifactId><version>0.21.0</version><configuration>
+	
+	   <verbose>true</verbose>
+                <images>
+                    <image>
+                        <!--project-name -->
+                        <name>renesito/${project.build.finalName}</name>
+
+                        <build>
+
+                            <!-- FROM used in a Dockerfile -->
+                            <from>openjdk:latest</from>
+
+<!--                             ENTRYPOINT used in a Dockerfile -->
+                            <entryPoint>
+                                <exec>
+                                    <arg>java</arg>
+                                    <!-- -->
+                                    <arg>-Djava.security.egd=file:/dev/./urandom</arg>
+                                    <arg>-jar</arg>
+                                    <!-- /maven/ es el directorio por defecto -->
+                                    <arg>/maven/${project.artifactId}.${project.packaging}</arg>
+                                </exec>
+                            </entryPoint>
+
+                            <assembly>
+                                <!-- This is a predefined assembly.xml that will only copy your final artifact to the Docker image -->
+                                <descriptorRef>artifact</descriptorRef>
+                            </assembly>
+                            <tags>
+                            <tag>latest</tag></tags>
+                        <ports><port>8080</port></ports>
+                        </build>
+                        <run><namingStrategy>alias</namingStrategy></run>
+                    </image>
+                </images>
+	</configuration></plugin>		
+			
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>e-reservation</title>
+</head>
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 50%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: whiteyellow;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+
+<body>
+	<div class="sidenav">
+	<h2>User/password:admin</h2>
+		<h3>Candidatos appi Documentacion</h3>
+		<p th:if="${param.error}" th:text="${errorMsg}" class="error"></p>
+		<form th:action="@{/app/login}" method="POST">
+			<fieldset>
+				<label class="etiqueta">Usuario :</label> <input type="text"
+					name="username" /> <br /> <br /> <label class="etiqueta">Clave:</label>
+				<input type="password" name="password" /> <br /> <br /> <input
+					type="submit" value="Ingresar" />
+			</fieldset>
+		</form>
+		
+	</div>
+			<div class="main">
+ 
+ <p><strong>Patron para la creacion de el modelado de nuestra api Value Object (VO)</strong><br /><br />Consiste b&aacute;sicamente en la agrupaci&oacute;n de&nbsp;datos&nbsp;dentro de un objeto, estos&nbsp;datos representan los campos de una tabla o entidad de la BD y facilitan su mantenimiento y transporte dentro del sistema.&nbsp;</p>
+<p>Se crean clases que representan las tablas de la BD que utiliza el sistema, de esta manera las propiedades o atributos de la clase ser&aacute;n los campos de la entidad, permitiendo encapsular la informaci&oacute;n y facilitando la manera en que estos son transportados, as&iacute; al momento de enviar los par&aacute;metros a un m&eacute;todo, se env&iacute;a un solo objeto que los contiene.</p>
+<p>&nbsp;</p>
+<p>En una aplicaci&oacute;n, hay tantos DAOs como modelos. Es decir, en una base de datos relacional, por cada tabla, habr&iacute;a un DAO.</p>
+<p>DAO consiste b&aacute;sicamente en una clase que es la que interact&uacute;a con la base de datos. Los m&eacute;todos de esta clase dependen de la aplicaci&oacute;n y de lo que queramos hacer. Pero generalmente se implementan los m&eacute;todos CRUD para realizar las "4 operaciones b&aacute;sicas" de una base de datos.. Los DTO (Data Transfer Object) o tambi&eacute;n denominados VO (Value Object). Son utilizados por DAO para transportar los datos desde la base de datos hacia la capa de l&oacute;gica de negocio y viceversa. Por ejemplo, cuando la capa de l&oacute;gica de negocio llama al m&eacute;todo create(), &iquest;qu&eacute; es lo que hace DAO? inserta un nuevo dato.</p>
+<p>Por ejemplo, si tuvi&eacute;ramos una base de datos relacional con una tabla employers, con los campos id, name y salary. Entonces tendr&iacute;amos que crear una clase EmployerDTO, con los atributos id, name y salary, que van a utilizar la capa de negocio y de persistencia para transportar los datos entre las dos capas.</p>
+<p>Use una estructura MVC para el proyecto&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Modelo:</strong>&nbsp;Esta capa representa todo lo que tiene que ver con el acceso a datos: guardar, actualizar, obtener datos, adem&aacute;s todo el c&oacute;digo de la l&oacute;gica del negocio, b&aacute;sicamente son las clases Java y parte de la l&oacute;gica de negocio.</p>
+<p><strong>Vista:&nbsp;</strong>La vista tiene que ver con la presentaci&oacute;n de datos del modelo y lo que ve el usuario, por lo general una vista es la representaci&oacute;n visual de un modelo (POJO o clase java).</p>
+ 
+ </div>
+	
+	
+</body>
+</html>
